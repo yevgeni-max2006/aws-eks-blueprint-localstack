@@ -17,6 +17,10 @@ variable "host" {
   default     = "s3-data.appflex.io"
 }
 
+variable "tls_secret_name" {
+  default = "appflex"
+}
+
 variable "service_port" {
   description = "Port of the backend service"
   type        = number
