@@ -22,7 +22,7 @@ resource "helm_release" "redis" {
 
   set {
     name  = "master.persistence.size"
-    value = "5Gi"
+    value = "10Gi"
   }
 }
 
