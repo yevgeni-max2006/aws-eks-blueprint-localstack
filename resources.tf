@@ -23,7 +23,7 @@ module "minio" {
 }
 
 module "argo-events" {
-  source = "./modules/iargo-events"
+  source = "./modules/argo-events"
   depends_on = [module.minio"
 }
 
