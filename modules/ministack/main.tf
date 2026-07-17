@@ -5,29 +5,6 @@ resource "kubernetes_namespace" "ministack" {
   }
 }
 
-resource "helm_release" "redis" {
-  name       = "redis"
-  namespace  = kubernetes_namespace.ministack.metadata[0].name
-  repository = "https://charts.bitnami.com/bitnami"
-  chart      = "redis"
-
-set = [
-  {
-    name  = "architecture"
-    value = "standalone"
-  },
-  {
-    name  = "auth.enabled"
-    value = "false"
-  },
-  {
-    name  = "master.persistence.size"
-    value = "5Gi"
-  }
- ]
-}
-
-
 resource "kubernetes_persistent_volume_claim" "ministack" {
   metadata {
     name      = "ministack-s3-data"
