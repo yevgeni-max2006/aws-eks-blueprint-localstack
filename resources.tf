@@ -22,8 +22,12 @@ module "minio" {
   depends_on = [module.kong]
 }
 
-module "ingress" {
-  source = "./modules/ingress"
+module "argo-events" {
+  source = "./modules/iargo-events"
   depends_on = [module.minio"
 }
 
+module "ingress" {
+  source = "./modules/ingress"
+  depends_on = [module.argo-events"
+}
