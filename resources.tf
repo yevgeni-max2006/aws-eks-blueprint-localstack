@@ -24,10 +24,10 @@ module "minio" {
 
 module "argo-events" {
   source = "./modules/argo-events"
-  depends_on = [module.minio"
+  depends_on = [module.minio]
 }
 
 module "ingress" {
   source = "./modules/ingress"
-  depends_on = [module.argo-events"
+  depends_on = [module.argo-events]
 }
