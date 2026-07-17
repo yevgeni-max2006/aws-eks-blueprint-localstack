@@ -1,8 +1,4 @@
-
 resource "kubernetes_ingress_v1" "kong_ingress" {
-  #depends_on = [
-  #  helm_release.kong
-  #]
   metadata {
     name      = "${var.name}-ingress"
     namespace = var.namespace
@@ -19,6 +15,14 @@ resource "kubernetes_ingress_v1" "kong_ingress" {
   spec {
     ingress_class_name = "kong"
 
+    tls {
+      hosts = [
+        var.host
+      ]
+
+      secret_name = var.tls_secret_name
+    }
+
     rule {
       host = var.host
 
@@ -30,6 +34,7 @@ resource "kubernetes_ingress_v1" "kong_ingress" {
           backend {
             service {
               name = var.name
+
               port {
                 number = var.service_port
               }
