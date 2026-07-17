@@ -22,18 +22,8 @@ module "minio" {
   depends_on = [module.kong]
 }
 
-module "velero" {
-  source = "./modules/velero"
-  depends_on = [module.minio]
-}
-
-module "velero-ui" {
-  source = "./modules/velero-ui"
-  depends_on = [module.velero]
-}
-
 module "ingress" {
   source = "./modules/ingress"
-  depends_on = [module.velero-ui]
+  depends_on = [module.minio"
 }
 
