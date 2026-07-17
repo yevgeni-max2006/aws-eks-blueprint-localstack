@@ -2,7 +2,7 @@
 variable "name" {
   description = "The name of the service/ingress"
   type        = string
-  default     = "minio"
+  default     = "minio-console"
 }
 
 variable "namespace" {
