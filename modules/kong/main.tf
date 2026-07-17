@@ -17,6 +17,10 @@ resource "helm_release" "kong" {
       value = "true"
     },
     {
+      name  = "proxy.replicas"
+      value = "2"
+    },
+    {
       name  = "proxy.type"
       value = "LoadBalancer"
     },
