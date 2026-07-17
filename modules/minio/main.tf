@@ -17,8 +17,9 @@ resource "helm_release" "minio" {
 
       # Buckets to create automatically
       buckets = [
-        { name = "velero" },
-        { name = "loki" }
+        { name = "events" },
+        { name = "data" },
+        { name = "logs" }
 
       ]
 
