@@ -27,7 +27,13 @@ module "argo-events" {
   depends_on = [module.minio]
 }
 
+module "ministack" {
+  source = "./modules/ministack"
+  namespace     = "ministack"
+  depends_on = [module.argo-events]
+}
+
 module "ingress" {
   source = "./modules/ingress"
-  depends_on = [module.argo-events]
+  depends_on = [module.ministack]
 }
