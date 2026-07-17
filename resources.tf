@@ -27,7 +27,12 @@ module "argo-events" {
   depends_on = [module.minio]
 }
 
+module "local-exec" {
+  source = "./modules/local-exec"
+  depends_on = [module.margo-events]
+}
+
 module "ingress" {
   source = "./modules/ingress"
-  depends_on = [module.minio]
+  depends_on = [module.margo-events]
 }
