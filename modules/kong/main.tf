@@ -22,7 +22,7 @@ resource "helm_release" "kong" {
     },
     {
       name  = "proxy.externalTrafficPolicy"
-      value = "Cluster"
+      value = "Local"
     },
     {
       name  = "proxy.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-type"
