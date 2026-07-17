@@ -29,10 +29,10 @@ module "argo-events" {
 
 module "local-exec" {
   source = "./modules/local-exec"
-  depends_on = [module.margo-events]
+  depends_on = [module.argo-events]
 }
 
 module "ingress" {
   source = "./modules/ingress"
-  depends_on = [module.margo-events]
+  depends_on = [module.argo-events]
 }
