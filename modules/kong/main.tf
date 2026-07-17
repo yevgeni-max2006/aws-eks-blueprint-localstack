@@ -1,4 +1,3 @@
-
 resource "helm_release" "kong" {
   name             = "kong"
   namespace        = "kong"
@@ -16,18 +15,26 @@ resource "helm_release" "kong" {
       name  = "ingressController.gatewayAPI.enabled"
       value = "true"
     },
+
+    # Kong proxy replicas
     {
       name  = "proxy.replicas"
       value = "2"
     },
+
+    # AWS LoadBalancer
     {
       name  = "proxy.type"
       value = "LoadBalancer"
     },
+
+    # Preserve client IP
     {
       name  = "proxy.externalTrafficPolicy"
       value = "Local"
     },
+
+    # AWS NLB
     {
       name  = "proxy.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-type"
       value = "nlb"
