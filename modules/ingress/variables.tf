@@ -2,23 +2,23 @@
 variable "name" {
   description = "The name of the service/ingress"
   type        = string
-  default     = "velero-ui"
+  default     = "minio"
 }
 
 variable "namespace" {
   description = "Namespace where the ingress and service are deployed"
   type        = string
-  default     = "velero-ui"
+  default     = "default"
 }
 
 variable "host" {
   description = "Hostname for ingress"
   type        = string
-  default     = "backup-service.appflex.io"
+  default     = "s3-data.appflex.io"
 }
 
 variable "service_port" {
   description = "Port of the backend service"
   type        = number
-  default     = "3000"
+  default     = "9001"
 }
