@@ -1,3 +1,4 @@
+
 output "deployment_name" {
   value = kubernetes_deployment.httpd_server.metadata[0].name
 }
