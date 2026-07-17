@@ -1,3 +1,4 @@
+
 resource "kubernetes_namespace" "ministack" {
   metadata {
     name = var.namespace
@@ -10,20 +11,20 @@ resource "helm_release" "redis" {
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "redis"
 
-  set {
+set = [
+  {
     name  = "architecture"
     value = "standalone"
-  }
-
-  set {
+  },
+  {
     name  = "auth.enabled"
     value = "false"
-  }
-
-  set {
+  },
+  {
     name  = "master.persistence.size"
-    value = "10Gi"
+    value = "5Gi"
   }
+ ]
 }
 
 
@@ -39,7 +40,6 @@ resource "kubernetes_persistent_volume_claim" "ministack" {
     ]
 
     storage_class_name = var.storage_class
-
     resources {
       requests = {
         storage = var.storage_size
@@ -85,7 +85,6 @@ resource "kubernetes_deployment" "ministack" {
             container_port = 4566
           }
 
-
           env {
             name  = "GATEWAY_PORT"
             value = "4566"
@@ -121,52 +120,41 @@ resource "kubernetes_deployment" "ministack" {
             value = "16379"
           }
 
-
           volume_mount {
             name       = "s3-data"
             mount_path = "/tmp/ministack-data/s3"
           }
-
 
           readiness_probe {
             http_get {
               path = "/_ministack/health"
               port = 4566
             }
-
             initial_delay_seconds = 15
             period_seconds        = 10
           }
-
 
           liveness_probe {
             http_get {
               path = "/_ministack/health"
               port = 4566
             }
-
             initial_delay_seconds = 30
             period_seconds        = 20
           }
-
-
           resources {
             requests = {
               cpu    = "250m"
               memory = "512Mi"
             }
-
             limits = {
               cpu    = "1"
               memory = "2Gi"
             }
           }
         }
-
-
         volume {
           name = "s3-data"
-
           persistent_volume_claim {
             claim_name = kubernetes_persistent_volume_claim.ministack.metadata[0].name
           }
@@ -178,25 +166,18 @@ resource "kubernetes_deployment" "ministack" {
 
 
 resource "kubernetes_service" "ministack" {
-
   metadata {
     name      = "ministack"
     namespace = kubernetes_namespace.ministack.metadata[0].name
   }
-
   spec {
-
     selector = {
       app = "ministack"
     }
-
-
     port {
       port        = 4566
       target_port = 4566
     }
-
-
     type = "ClusterIP"
   }
 }
