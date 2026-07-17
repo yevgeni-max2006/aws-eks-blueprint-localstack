@@ -1,8 +1,8 @@
-<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/3c58dbaf-3fff-4f65-822e-2fa1f16b8913" />
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/42a9571e-8a59-433e-864d-122819cbb393" />
 
 
-## AWS | EKS BluePrint Disaster Recovery
-Provisioning an Amazon Elastic Kubernetes Service (EKS) cluster using Terraform allows you to define your entire infrastructure (VPC, subnets, IAM roles, and the cluster itself) as code, ensuring repeatable, version-controlled, and automated deployments.
+## AWS | EKS BluePrint MiniStack
+MiniStack is a free, open-source local AWS cloud emulator designed to help developers build and test applications offline without hitting real AWS infrastructure. It serves as a drop-in community replacement for LocalStack, which transitioned core parts of its service behind paid plans
 
 
 
