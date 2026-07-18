@@ -24,15 +24,15 @@ module "local-exec" {
 
 module "minio" {
   source = "./modules/minio"
-  depends_on = [module.kong,module.local-exec]
+  depends_on = [module.kong]
 }
 
 module "argo-events" {
   source = "./modules/argo-events"
-  depends_on = [module.kong,module.local-exec]
+  depends_on = [module.minio]
 }
 
-module "ingress" {
-  source = "./modules/ingress"
+module "route" {
+  source = "./modules/route"
   depends_on = [module.argo-events]
 }
