@@ -29,7 +29,7 @@ module "minio" {
 
 module "argo-events" {
   source = "./modules/argo-events"
-  ddepends_on = [module.kong,module.local-exec]
+  depends_on = [module.kong,module.local-exec]
 }
 
 module "ingress" {
