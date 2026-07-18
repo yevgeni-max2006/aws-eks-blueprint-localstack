@@ -15,6 +15,10 @@ resource "helm_release" "kong" {
       name  = "ingressController.gatewayAPI.enabled"
       value = "true"
     },
+    {
+      name  = "ingressController.enabled"
+      value = "true"
+    },
 
     # Kong proxy replicas
     {
