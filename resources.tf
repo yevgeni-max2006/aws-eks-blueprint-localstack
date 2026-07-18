@@ -17,19 +17,19 @@ module "kong" {
   depends_on = [module.httpd]
 }
 
+module "local-exec" {
+  source = "./modules/local-exec"
+  depends_on = [module.kong]
+}
+
 module "minio" {
   source = "./modules/minio"
-  depends_on = [module.kong]
+  depends_on = [module.kong,module.local-exec]
 }
 
 module "argo-events" {
   source = "./modules/argo-events"
-  depends_on = [module.minio]
-}
-
-module "local-exec" {
-  source = "./modules/local-exec"
-  depends_on = [module.argo-events]
+  ddepends_on = [module.kong,module.local-exec]
 }
 
 module "ingress" {
